@@ -45,32 +45,12 @@
             width: 100%;
             display: block;
         }
-        .showreel-play-btn {
+        .showreel-btn {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease, background 0.2s ease;
-        }
-        .showreel-container:hover .showreel-play-btn {
-            transform: translate(-50%, -50%) scale(1.08);
-            background: #ffffff;
-        }
-        .showreel-play-btn::after {
-            content: "";
-            width: 0;
-            height: 0;
-            border-top: 16px solid transparent;
-            border-bottom: 16px solid transparent;
-            border-left: 26px solid #222;
-            margin-left: 6px;
+            white-space: nowrap;
         }
         .showreel-modal {
             display: none;
@@ -183,9 +163,9 @@
                 <div class="col-lg-12">
 
                     <!-- Showreel preview / play button -->
-                    <div class="showreel-container" id="showreelOpen">
+                    <div class="showreel-container">
                         <img src="https://i.vimeocdn.com/video/2182390874-7b657191875625259fc60b85b41fc02733a7f5a5c138f6f536dacbe961f014c3-d?f=webp&region=us" alt="Denis Labutin Showreel">
-                        <div class="showreel-play-btn"></div>
+                        <a href="#" class="btn-solid-lg showreel-btn" id="showreelOpen">SHOWREEL</a>
                     </div> <!-- end of showreel-container -->
 
                 </div> <!-- end of col -->
@@ -712,7 +692,8 @@
             var closeBtn = document.getElementById("showreelClose");
             var slot = document.getElementById("showreelPlayerSlot");
 
-            function openModal() {
+            function openModal(e) {
+                if (e) e.preventDefault();
                 slot.innerHTML =
                     '<iframe src="https://player.vimeo.com/video/' + VIMEO_ID +
                     '?h=' + VIMEO_HASH + '&autoplay=1&title=0&byline=0&portrait=0" ' +
