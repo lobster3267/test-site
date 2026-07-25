@@ -14,16 +14,7 @@
 		}
     });
     
-	// jQuery for page scrolling feature - requires jQuery Easing plugin
-	$(function() {
-		$(document).on('click', 'a.page-scroll', function(event) {
-			var $anchor = $(this);
-			$('html, body').stop().animate({
-				scrollTop: $($anchor.attr('href')).offset().top
-			}, 600, 'easeInOutExpo');
-			event.preventDefault();
-		});
-    });
+	
 
     // offcanvas script from Bootstrap + added element to close menu on click in small viewport
     $('[data-toggle="offcanvas"], .navbar-nav li a:not(.dropdown-toggle').on('click', function () {
@@ -57,22 +48,51 @@
 	});
 	
 
-    /* Back To Top Button */
-    // create the back to top button
-    $('body').prepend('<a href="body" class="back-to-top page-scroll">Back to Top</a>');
-    var amountScrolled = 700;
-    $(window).scroll(function() {
-        if ($(window).scrollTop() > amountScrolled) {
-            $('a.back-to-top').fadeIn('500');
-        } else {
-            $('a.back-to-top').fadeOut('500');
-        }
-    });
-
-
 	/* Removes Long Focus On Buttons */
 	$(".button, a, button").mouseup(function() {
 		$(this).blur();
 	});
+
+    /* Showreel modal: autoplay on open, stop video completely on close */
+    var showreelSrc = 'https://www.youtube.com/embed/Qv8mAMXcS8E?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&showinfo=0&autohide=0';
+    var $showreelIframe = $('#showreelModal iframe');
+
+    $('#showreelModal').on('show.bs.modal', function () {
+        $showreelIframe.attr('src', showreelSrc);
+    });
+
+    $('#showreelModal').on('hidden.bs.modal', function () {
+        $showreelIframe.attr('src', '');
+    });
+
+    $('.project-video-container').on('click keydown', function (event) {
+        if (event.type === 'keydown' && event.which !== 13 && event.which !== 32) {
+            return;
+        }
+
+        event.preventDefault();
+
+        if ($(this).hasClass('is-playing')) {
+            return;
+        }
+
+        $(this).addClass('is-playing');
+        $(this).find('.project-video-frame').attr('src', $(this).data('video-url'));
+    });
+
+    $('.work-video-trigger').on('click keydown', function (event) {
+        if (event.type === 'keydown' && event.which !== 13 && event.which !== 32) {
+            return;
+        }
+
+        event.preventDefault();
+        var videoUrl = $(this).data('video-url');
+        $('#worksVideoModal iframe').attr('src', videoUrl);
+        $('#worksVideoModal').modal('show');
+    });
+
+    $('#worksVideoModal').on('hidden.bs.modal', function () {
+        $('#worksVideoModal iframe').attr('src', '');
+    });
 
 })(jQuery);
