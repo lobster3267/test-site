@@ -542,7 +542,7 @@ input[type='checkbox'] {
 	padding: 1.25rem 2.5rem;
 	border: 1px solid rgba(255, 255, 255, 0.7);
 	background-color: transparent;
-	color: #ffffff;
+	color: #58ff00;
 	font-weight: 700;
 	font-size: 3rem;
 	line-height: 1;
@@ -751,7 +751,7 @@ input[type='checkbox'] {
 .basic-2 .fas,
 .basic-2 .far {
 	margin-bottom: 1.75rem;
-	color: #0b36a8;
+	color: #58ff00;
 	font-size: 3.5rem;
 }
 
