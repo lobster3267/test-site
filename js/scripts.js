@@ -54,7 +54,7 @@
 	});
 
     /* Showreel modal: autoplay on open, stop video completely on close */
-    var showreelSrc = 'images/showreel2026.mov';
+    var showreelSrc = 'images/showreel2026.mp4';
     var $showreelMedia = $('#showreelModal video');
 
     $('#showreelModal').on('show.bs.modal', function () {
