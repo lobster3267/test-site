@@ -54,15 +54,29 @@
 	});
 
     /* Showreel modal: autoplay on open, stop video completely on close */
-    var showreelSrc = 'https://www.youtube.com/embed/Qv8mAMXcS8E?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&showinfo=0&autohide=0';
-    var $showreelIframe = $('#showreelModal iframe');
+    var showreelSrc = 'images/showreel2026.mov';
+    var $showreelMedia = $('#showreelModal video');
 
     $('#showreelModal').on('show.bs.modal', function () {
-        $showreelIframe.attr('src', showreelSrc);
+        $showreelMedia.attr('src', showreelSrc);
+        var media = $showreelMedia.get(0);
+        if (media) {
+            media.load();
+            media.play().catch(function() {
+                // autoplay may be blocked by browser if not muted
+            });
+        }
     });
 
     $('#showreelModal').on('hidden.bs.modal', function () {
-        $showreelIframe.attr('src', '');
+        var media = $showreelMedia.get(0);
+        if (media) {
+            media.pause();
+        }
+        $showreelMedia.attr('src', '');
+        if (media) {
+            media.load();
+        }
     });
 
     $('.project-video-container').on('click keydown', function (event) {
